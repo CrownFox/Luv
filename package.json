@@ -1,0 +1,72 @@
+{
+  "name": "luv-imageboard-viewer",
+  "version": "1.0.0",
+  "description": "An imageboard viewer made with luv",
+  "main": "src/main.js",
+  "scripts": {
+    "start": "electron-forge start",
+    "package": "electron-forge package",
+    "make": "electron-forge make"
+  },
+  "repository": " ",
+  "keywords": [
+    "image",
+    "board",
+    "viewer",
+    "luv",
+    "beta"
+  ],
+  "author": "CrownFox",
+  "license": "GNU GPLv3",
+  "devDependencies": {
+    "babel-plugin-transform-async-to-generator": "^6.24.1",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-react": "^6.24.1",
+    "electron-forge": "^5.2.4",
+    "electron-prebuilt-compile": "4.0.0"
+  },
+  "dependencies": {
+    "@types/jquery": "^3.3.31",
+    "blob-to-buffer": "^1.2.8",
+    "electron-compile": "^6.4.4",
+    "electron-squirrel-startup": "^1.0.0",
+    "jimp": "^0.6.4",
+    "jquery": "^3.4.1",
+    "mousetrap": "^1.6.3",
+    "nedb": "^1.8.0",
+    "pug": "^2.0.4",
+    "xml-js": "^1.6.11"
+  },
+  "config": {
+    "forge": {
+      "make_targets": {
+        "win32": [
+          "squirrel"
+        ],
+        "darwin": [
+          "zip"
+        ],
+        "linux": [
+          "deb",
+          "rpm"
+        ]
+      },
+      "electronPackagerConfig": {
+        "packageManager": "npm"
+      },
+      "electronWinstallerConfig": {
+        "name": "luv_imageboard_viewer"
+      },
+      "electronInstallerDebian": {},
+      "electronInstallerRedhat": {},
+      "github_repository": {
+        "owner": "",
+        "name": ""
+      },
+      "windowsStoreConfig": {
+        "packageName": "",
+        "name": "luvimageboardviewer"
+      }
+    }
+  }
+}

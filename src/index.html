@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Luv</title>
+    <link rel="stylesheet" type="text/css" href="./assets/stylesheets/index.css">
+    <script src="./assets/scripts/index.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <div id="top-bar">
+        <div id="title-bar">
+          <div id="title">
+            <img class='icon' src='./assets/images/UI/LuvButt.png'>
+            Luv Beta
+          </div>
+          <div id="window-controls">
+            <div class="window-control minimize" onclick='minimize()'></div>
+            <div class="window-control maximize" onclick='maxtoggle()'></div>
+            <div class="window-control close" onclick='closeWindow()'></div>
+          </div>
+        </div>
+        <div id="file-bar">
+          <div id="file-button"></div>
+        </div>
+      </div>
+      <div id="main">
+        <div id="control-bar">
+            <div id="page-select">
+              <div class='page-selector-button'>Select Site</div>
+              <div class='page-selector-content'>
+                </div>
+            </div>
+            <input type="text" id="tag-input">
+            <input type="button" id="search-button" value="Search">
+            <div id="page-buttons">
+              <div id="home-button" class="page-button">Home</div>
+            </div>
+          </div>
+          <div id="pages">
+            <div id="home">
+            </div>
+          </div>
+      </div>
+    </div>
+  </body>
+</html>
