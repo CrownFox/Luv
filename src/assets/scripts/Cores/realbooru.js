@@ -2,7 +2,7 @@ var $ = require('jquery')
 var defs = require('../definitions')
 var common = require('../common')
 
-class rule34xxx
+class realbooru
 {
     constructor()
     {
@@ -21,7 +21,7 @@ class rule34xxx
     {
         this.page = page
 
-        var URL = `https://rule34.xxx/index.php?page=dapi&s=post&q=index&limit=50&pid=${page}`
+        var URL = `https://realbooru.com/index.php?page=dapi&s=post&q=index&limit=50&pid=${page}`
 
         //Check for user supplied tags
         URL += common.parse_tags(this, tags)
@@ -78,7 +78,7 @@ class rule34xxx
 
     fetch_post(id, callback = (post) => {})
     {
-        var URL = `https://rule34.xxx/index.php?page=dapi&s=post&q=index&id=${id}`
+        var URL = `https://realbooru.com/index.php?page=dapi&s=post&q=index&id=${id}`
 
         $.get(URL, (response) =>
         {
@@ -110,4 +110,4 @@ class rule34xxx
     }
 }
 
-module.exports = new rule34xxx
+module.exports = new realbooru

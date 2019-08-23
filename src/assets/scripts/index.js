@@ -11,8 +11,11 @@ var {remote} = require('electron')
 var original_width = 800
 var original_height = 600
 var Mousetrap = require('mousetrap')
+var notifications = 0
+var c = require(__dirname + '/assets/scripts/common.js')
 
 var loading = false
+
 
 $(document).ready(() =>
 {
@@ -72,6 +75,7 @@ function coreSetup()
     add_core('danbooru', 'Danbooru')
     add_core('e621', 'E621')
     add_core('gelbooru', 'Gelbooru')
+    add_core('realbooru', 'Realbooru')
     add_core('rule34xxx', 'Rule34.XXX')
     add_core('sankaku', 'Sankaku Channel')
     add_core('internal', 'My Collection')
@@ -133,13 +137,34 @@ function load_page(corename = '', tags = null)
                         {
                             var core = cores.get_core(newpost.attr('core'))
                             var id = newpost.attr('id')
-        
                             console.log(post)
-                            core.delete_post(id, () =>
-                            {
-                                console.log('Post ' + id + ' deleted!')
 
-                                newpost.remove()
+                            c.dialog({
+                                title: `Delete [${id}]?`,
+                                text: `Are you sure you want to delete this post? This operation cannot be undone!`,
+                                options:[
+                                    {
+                                        type: 'button',
+                                        text: 'Confirm',
+                                        value: true
+                                    },
+                                    {
+                                        type: 'button',
+                                        text: 'Cancel',
+                                        value: false
+                                    }
+                                ]
+                            }, (value) =>
+                            {
+                                if (value == true)
+                                {
+                                    core.delete_post(id, () =>
+                                    {
+                                        console.log('Post ' + id + ' deleted!')
+        
+                                        newpost.remove()
+                                    })
+                                }
                             })
                         })
                     }
@@ -189,7 +214,7 @@ function select_page(page, type)
             var core = cores.get_core(page)
             if (core.firstload == false)
             {
-                load_page(page)
+                load_page(page, "rating:safe")
                 core.firstload = true
             }
 
@@ -282,10 +307,16 @@ function load_image(corename, id, thumb)
         {
             $image_container.on('contextmenu', (event) =>
             {
+                notification(`Downloading [${post.id}]`)
+
                 console.log('Right clicky~!')
     
                 var internal = cores.get_core('internal')
-                internal.save_post($image_container.data().post, __dirname, () => {})
+                internal.save_post($image_container.data().post, __dirname, (data) => 
+                {
+                    notification(`[${data.origin_id}] finished`)
+                })
+
             })
         }
     })
@@ -312,4 +343,32 @@ function maxtoggle()
 function closeWindow()
 {
     window.close()
+}
+
+async function notification(text)
+{
+    var offset = notifications
+    notifications += 1
+
+    var div = $(`<div class='notification'>${text}</div>`)
+        .appendTo('body')
+
+    setTimeout(() =>
+    {
+        div
+            .css('bottom', `-24px`)
+            .css('height', '24px')
+            .animate({bottom: `${offset*24}px` /*'0px'*/}, () => 
+            {
+                setTimeout(() =>
+                {
+                    div.animate({bottom: `-24px`}, () =>
+                    {
+                        div.remove()
+                        notifications -= 1
+                    })
+                }, 2000)
+            })
+    }, 1)
+    
 }

@@ -6,8 +6,6 @@ class sankaku
 {
     constructor()
     {
-        this.username = 'rinarenna'
-        this.password = '562923dcee0a637d3c16c86f010701d0'
         this.page = 1
         this.last_id = 0
         this.tags = null

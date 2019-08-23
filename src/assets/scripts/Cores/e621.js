@@ -6,8 +6,6 @@ class e621
 {
     constructor()
     {
-        this.username = 'rinarenna'
-        this.password = '562923dcee0a637d3c16c86f010701d0'
         this.page = 1
         this.last_id = 0
         this.tags = null
@@ -19,7 +17,7 @@ class e621
     {
         this.page = page
 
-        var URL = `http://e621.net/post/index.json?username=${this.username}&password=${this.password}&limit=50&page=${page}`
+        var URL = `http://e621.net/post/index.json?limit=50&page=${page}`
 
         //Check for user supplied tags
         URL += common.parse_tags(this, tags)

@@ -145,6 +145,7 @@ body #app #main #control-bar input {
 }
 
 body #app #main #control-bar input[type=text] {
+  user-select: text;
   background: rgba(255, 255, 255, 0.1);
   cursor: text;
 }
@@ -405,4 +406,16 @@ body #app #main #pages .image-page .tags {
 body #app #main #pages .image-page .tags .tag {
   margin: 4px;
   margin-left: 8px;
+}
+
+.notification {
+  display: flex;
+  position: absolute;
+  width: 400px;
+  left: calc(50% - 200px);
+  align-items: center;
+  justify-content: center;
+  border-radius: 5px;
+  background: #32323c;
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }

@@ -128,7 +128,7 @@ class internal
         //var URL = `http://e621.net/post/show.json?username=${this.username}&password=${this.password}&id=${id}`
     }
 
-    save_post(post, dir, callback = () => {})
+    async save_post(post, dir, callback = (data) => {})
     {
         console.log(post)
 
@@ -182,6 +182,7 @@ class internal
                             console.log('Image processing finished without exception')
 
                             db.insert(data)
+                            callback(data)
                         })
                     })
                     //db.insert()
