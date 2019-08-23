@@ -214,7 +214,7 @@ function select_page(page, type)
             var core = cores.get_core(page)
             if (core.firstload == false)
             {
-                load_page(page, "rating:safe")
+                load_page(page)
                 core.firstload = true
             }
 
