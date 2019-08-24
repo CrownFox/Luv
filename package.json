@@ -17,7 +17,7 @@
     "beta"
   ],
   "author": "CrownFox",
-  "license": "GNU GPLv3",
+  "license": "GPL-3.0-or-later",
   "devDependencies": {
     "babel-plugin-transform-async-to-generator": "^6.24.1",
     "babel-preset-env": "^1.7.0",
