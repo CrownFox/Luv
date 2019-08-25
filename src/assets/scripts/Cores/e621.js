@@ -84,6 +84,7 @@ class e621
             newpost.file_height = post.file_height
             newpost.file_width = post.file_width
             newpost.tags = post.tags.split(' ')
+            newpost.page_url = `http://e621.net/post/show.json?id=${id}`
 
             if (post.file_ext == 'webm')
             {

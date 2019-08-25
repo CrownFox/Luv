@@ -1,6 +1,6 @@
 {
   "name": "luv-imageboard-viewer",
-  "version": "1.0.0",
+  "version": "0.2.0",
   "description": "An imageboard viewer made with luv",
   "main": "src/main.js",
   "scripts": {
@@ -28,6 +28,7 @@
   "dependencies": {
     "@types/jquery": "^3.3.31",
     "blob-to-buffer": "^1.2.8",
+    "copy-to-clipboard": "^3.2.0",
     "electron-compile": "^6.4.4",
     "electron-squirrel-startup": "^1.0.0",
     "jimp": "^0.6.4",

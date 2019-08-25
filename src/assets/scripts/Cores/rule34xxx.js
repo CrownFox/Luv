@@ -93,6 +93,7 @@ class rule34xxx
             newpost.file_height = $post.attr('height')
             newpost.file_width = $post.attr('width')
             newpost.tags = $post.attr('tags').split(' ')
+            newpost.page_url = `https://rule34.xxx/index.php?page=post&s=view&id=${id}`
 
             if ($post.attr('tags').includes('webm'))
             {

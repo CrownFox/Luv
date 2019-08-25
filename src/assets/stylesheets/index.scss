@@ -1,7 +1,57 @@
+@mixin button
+{
+    perspective: 1px; /* any non-zero value will work */
+    background-position: center center;
+    background: rgb(100, 100, 110);
+
+    border-radius: 5px;
+
+    flex-shrink: 0;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    overflow: hidden;
+
+    box-shadow: 0px 0px 5px rgba(0,0,0,1), 0px 0px 0px 1px rgba(0,0,0,1), inset 0px 0px 5px rgba(255,255,255,0.2);
+
+    //border: 1px solid rgba(0,0,0,0.1);
+
+    .image
+    {
+        width: 100%;
+        height: 100%;
+
+        object-fit: cover;
+    }
+
+    .icon
+    {
+        max-width: 100%;
+        max-height: 100%;
+        padding: 6px;
+    }
+
+    &:hover
+    {
+        box-shadow: 0px 0px 10px rgba(0,0,0,1), 0px 0px 0px 1px rgba(0,0,0,1), inset 0px 0px 5px rgba(255,255,255,0.2);
+    }
+
+    &:active
+    {
+        box-shadow: 0px 0px 5px rgba(255,255,255,0.2), inset 0px 0px 0px 1px rgba(0,0,0,1), inset 0px 0px 5px rgba(0,0,0,1), inset 0px 0px 5px rgba(0,0,0,1);
+    }
+}
+
+
+
 *
 {
     box-sizing: border-box;
     cursor: default;
+    user-select: none;
     
     ::-webkit-scrollbar
     {
@@ -277,46 +327,12 @@ body
 
                     .page-button
                     {
-                        perspective: 1px; /* any non-zero value will work */
-                        background-position: center center;
-
-                        border-radius: 5px;
-
-                        width: 80px;
-                        height: 80px;
+                        @include button;
 
                         margin-left: 8px;
 
-                        flex-shrink: 0;
-
-                        display: flex;
-
-                        align-items: center;
-                        justify-content: center;
-
-                        overflow: hidden;
-
-                        box-shadow: 0px 0px 5px rgba(0,0,0,1), 0px 0px 0px 1px rgba(0,0,0,1), inset 0px 0px 5px rgba(255,255,255,0.2);
-
-                        //border: 1px solid rgba(0,0,0,0.1);
-
-                        img
-                        {
-                            width: 100%;
-                            height: 100%;
-
-                            object-fit: cover;
-                        }
-                    }
-
-                    .page-button:hover
-                    {
-                        box-shadow: 0px 0px 10px rgba(0,0,0,1), 0px 0px 0px 1px rgba(0,0,0,1), inset 0px 0px 5px rgba(255,255,255,0.2);
-                    }
-
-                    .page-button:active
-                    {
-                        box-shadow: 0px 0px 5px rgba(255,255,255,0.2), inset 0px 0px 0px 1px rgba(0,0,0,1), inset 0px 0px 5px rgba(0,0,0,1), inset 0px 0px 5px rgba(0,0,0,1);
+                        width: 80px;
+                        height: 80px;
                     }
                 }
             }
@@ -489,13 +505,6 @@ body
                             width: auto;
                             height: 100%;
             
-                            //width: auto;
-                            //height: calc(100% - 10px);
-            
-                            //display: block;
-            
-                            //flex: 0 0 auto;
-            
                             .image
                             {
                                 display: block;
@@ -521,25 +530,70 @@ body
                         }
                     }
 
-                    .tags
+                    .side-bar
                     {
+                        top: 4px;
+
                         position: absolute;
 
-                        left: 0px;
-                        top: 8px;
-
+                        display: flex;
+                        flex-direction: column;
+                        
                         width: 300px;
-                        height: calc(100% - 18px);
-                        overflow: auto;
+                        height: calc(100% - 15px);
+                        overflow: hidden;
 
-                        border-radius: 5px;
-
-                        background: rgba(255, 255, 255, 0.1);
-
-                        .tag
+                        .side-bar-buttons
                         {
-                            margin: 4px;
-                            margin-left: 8px;
+                            height: 56px;
+                            width: 100%;
+
+                            .button
+                            {
+                                @include button;
+
+                                background: rgb(80, 80, 90);
+
+                                width: 46px;
+                                height: 46px;
+                            }
+                        }
+
+                        .tags
+                        {
+                            width: 100%;
+                            flex: 1 1 100%;
+
+                            overflow: auto;
+    
+                            border-radius: 5px;
+    
+                            background: rgba(255, 255, 255, 0.1);
+    
+                            .tag
+                            {
+                                //margin: 4px;
+                                //margin-left: 8px;
+
+                                padding: 4px;
+
+                                display: flex;
+
+                                .search-tag
+                                {
+                                    width: 20px;
+                                    height: 20px;
+
+                                    margin-right: 6px;
+
+                                    @include button;
+                                }
+
+                                &:nth-child(odd)
+                                {
+                                    background: rgba(255,255,255,0.1);
+                                }
+                            }
                         }
                     }
                 }
@@ -552,7 +606,10 @@ body
 {
     display: flex;
     position: absolute;
-    width: 400px;
+    max-width: 90%;
+    padding-left: 4px;
+    padding-right: 4px;
+
     left: calc(50% - 200px);
     
     align-items: center;
@@ -560,6 +617,6 @@ body
 
     border-radius: 5px;
 
-    background: rgba(50, 50, 60, 1);
+    background: rgb(80, 80, 90);
     border: 1px solid rgba(255,255,255,0.1);
 }

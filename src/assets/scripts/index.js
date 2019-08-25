@@ -13,6 +13,7 @@ var original_height = 600
 var Mousetrap = require('mousetrap')
 var notifications = 0
 var c = require(__dirname + '/assets/scripts/common.js')
+import copy from 'copy-to-clipboard'
 
 var loading = false
 
@@ -214,6 +215,7 @@ function select_page(page, type)
             var core = cores.get_core(page)
             if (core.firstload == false)
             {
+                //load_page(page, "rating:safe")
                 load_page(page)
                 core.firstload = true
             }
@@ -268,6 +270,8 @@ function load_image(corename, id, thumb)
             post: post
         })
 
+        var $tags = $(div).find('.tag')
+
         var pagebutton = $(`<div id='button-${id}' class='page-button'></div>`).appendTo('#page-buttons')
         console.log('Sample URL is: ' + thumb.sample_url)
         $(pagebutton).css('background-image', `url("${thumb.sample_url}")`)
@@ -319,6 +323,36 @@ function load_image(corename, id, thumb)
 
             })
         }
+
+        var $sharebutton = $(div).find('.share-button')
+        $sharebutton.on('click', () =>
+        {
+            copy($sharebutton.attr('link'))
+            notification('Copied ' + $sharebutton.attr('link'))
+        })
+
+        $tags.each((index, tag) =>
+        {
+            var $tag = $(tag)
+
+            var $include = $tag.find('.include')
+            $include.on('click', () =>
+            {
+                select_page(corename, 'core')
+                $(`#core-${corename}`).find('.thumbnail').remove()
+                $(`#core-${corename}`).find('.page-divider').remove()
+                add_searchtag(corename, $tag.find('.tag-text').text())
+            })
+            
+            var $exclude = $tag.find('.exclude')
+            $exclude.on('click', () =>
+            {
+                select_page(corename, 'core')
+                $(`#core-${corename}`).find('.thumbnail').remove()
+                $(`#core-${corename}`).find('.page-divider').remove()
+                add_searchtag(corename, '-' + $tag.find('.tag-text').text())
+            })
+        })
     })
 }
 
@@ -343,6 +377,24 @@ function maxtoggle()
 function closeWindow()
 {
     window.close()
+}
+
+function add_searchtag(corename, tag)
+{
+    var core = cores.get_core(corename)
+    var tags
+
+    if (core.tags != null)
+    {
+        tags = core.tags + ' ' + tag
+    }
+    else
+    {
+        tags = tag
+    }
+
+    load_page(corename, tags)
+    select_page('home')
 }
 
 async function notification(text)

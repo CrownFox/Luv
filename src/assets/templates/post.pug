@@ -2,6 +2,14 @@ div.content
     div.loading
     div.image-container
         img.image(src='./assets/images/UI/103.png')
-div.tags
-    each val in tags
-        div.tag= val
+div.side-bar
+    div.side-bar-buttons
+        div.button.share-button(link=page_url)
+            img.icon(src='./assets/images/UI/link-icon.png')
+    div.tags
+        each val in tags
+            if (val != '')
+                div.tag
+                    div.search-tag.include +
+                    div.search-tag.exclude -
+                    div.tag-text= val

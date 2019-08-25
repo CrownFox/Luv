@@ -76,6 +76,7 @@ class sankaku
             newpost.file_url = 'https://' + image.attr('src')
             newpost.file_height = image.attr('height')
             newpost.file_width = image.attr('width')
+            newpost.page_url = `https://chan.sankakucomplex.com/post/show/${id}`
             newpost.tags = []
 
             $(response, ghost).find('#tag-sidebar').children().each((index, element) =>

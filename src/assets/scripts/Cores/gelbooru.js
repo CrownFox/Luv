@@ -89,6 +89,7 @@ class gelbooru
                 newpost.file_height = image.css('height')
                 newpost.file_width = image.css('width')
                 newpost.tags = image.attr('alt').split(' ')  
+                newpost.page_url = `http://gelbooru.com/index.php?page=post&s=view&id=${id}`
                 newpost.format = 'image'  
             }
             else
@@ -99,6 +100,7 @@ class gelbooru
                 newpost.file_height = ''
                 newpost.file_width = ''
                 newpost.tags = []//image.attr('alt').split(' ')  
+                newpost.page_url = `http://gelbooru.com/index.php?page=post&s=view&id=${id}`
                 newpost.format = 'video'  
             }
 

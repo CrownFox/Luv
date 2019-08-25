@@ -2,6 +2,7 @@
 * {
   box-sizing: border-box;
   cursor: default;
+  user-select: none;
 }
 
 * ::-webkit-scrollbar {
@@ -222,22 +223,29 @@ body #app #main #control-bar #page-buttons .page-button {
   perspective: 1px;
   /* any non-zero value will work */
   background-position: center center;
+  background: #64646e;
   border-radius: 5px;
-  width: 80px;
-  height: 80px;
-  margin-left: 8px;
   flex-shrink: 0;
   display: flex;
   align-items: center;
   justify-content: center;
   overflow: hidden;
   box-shadow: 0px 0px 5px black, 0px 0px 0px 1px black, inset 0px 0px 5px rgba(255, 255, 255, 0.2);
+  margin-left: 8px;
+  width: 80px;
+  height: 80px;
 }
 
-body #app #main #control-bar #page-buttons .page-button img {
+body #app #main #control-bar #page-buttons .page-button .image {
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+
+body #app #main #control-bar #page-buttons .page-button .icon {
+  max-width: 100%;
+  max-height: 100%;
+  padding: 6px;
 }
 
 body #app #main #control-bar #page-buttons .page-button:hover {
@@ -392,30 +400,122 @@ body #app #main #pages .image-page .content .image-container.fill .image {
   max-width: none;
 }
 
-body #app #main #pages .image-page .tags {
+body #app #main #pages .image-page .side-bar {
+  top: 4px;
   position: absolute;
-  left: 0px;
-  top: 8px;
+  display: flex;
+  flex-direction: column;
   width: 300px;
-  height: calc(100% - 18px);
+  height: calc(100% - 15px);
+  overflow: hidden;
+}
+
+body #app #main #pages .image-page .side-bar .side-bar-buttons {
+  height: 56px;
+  width: 100%;
+}
+
+body #app #main #pages .image-page .side-bar .side-bar-buttons .button {
+  perspective: 1px;
+  /* any non-zero value will work */
+  background-position: center center;
+  background: #64646e;
+  border-radius: 5px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  box-shadow: 0px 0px 5px black, 0px 0px 0px 1px black, inset 0px 0px 5px rgba(255, 255, 255, 0.2);
+  background: #50505a;
+  width: 46px;
+  height: 46px;
+}
+
+body #app #main #pages .image-page .side-bar .side-bar-buttons .button .image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+body #app #main #pages .image-page .side-bar .side-bar-buttons .button .icon {
+  max-width: 100%;
+  max-height: 100%;
+  padding: 6px;
+}
+
+body #app #main #pages .image-page .side-bar .side-bar-buttons .button:hover {
+  box-shadow: 0px 0px 10px black, 0px 0px 0px 1px black, inset 0px 0px 5px rgba(255, 255, 255, 0.2);
+}
+
+body #app #main #pages .image-page .side-bar .side-bar-buttons .button:active {
+  box-shadow: 0px 0px 5px rgba(255, 255, 255, 0.2), inset 0px 0px 0px 1px black, inset 0px 0px 5px black, inset 0px 0px 5px black;
+}
+
+body #app #main #pages .image-page .side-bar .tags {
+  width: 100%;
+  flex: 1 1 100%;
   overflow: auto;
   border-radius: 5px;
   background: rgba(255, 255, 255, 0.1);
 }
 
-body #app #main #pages .image-page .tags .tag {
-  margin: 4px;
-  margin-left: 8px;
+body #app #main #pages .image-page .side-bar .tags .tag {
+  padding: 4px;
+  display: flex;
+}
+
+body #app #main #pages .image-page .side-bar .tags .tag .search-tag {
+  width: 20px;
+  height: 20px;
+  margin-right: 6px;
+  perspective: 1px;
+  /* any non-zero value will work */
+  background-position: center center;
+  background: #64646e;
+  border-radius: 5px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  box-shadow: 0px 0px 5px black, 0px 0px 0px 1px black, inset 0px 0px 5px rgba(255, 255, 255, 0.2);
+}
+
+body #app #main #pages .image-page .side-bar .tags .tag .search-tag .image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+body #app #main #pages .image-page .side-bar .tags .tag .search-tag .icon {
+  max-width: 100%;
+  max-height: 100%;
+  padding: 6px;
+}
+
+body #app #main #pages .image-page .side-bar .tags .tag .search-tag:hover {
+  box-shadow: 0px 0px 10px black, 0px 0px 0px 1px black, inset 0px 0px 5px rgba(255, 255, 255, 0.2);
+}
+
+body #app #main #pages .image-page .side-bar .tags .tag .search-tag:active {
+  box-shadow: 0px 0px 5px rgba(255, 255, 255, 0.2), inset 0px 0px 0px 1px black, inset 0px 0px 5px black, inset 0px 0px 5px black;
+}
+
+body #app #main #pages .image-page .side-bar .tags .tag:nth-child(odd) {
+  background: rgba(255, 255, 255, 0.1);
 }
 
 .notification {
   display: flex;
   position: absolute;
-  width: 400px;
+  max-width: 90%;
+  padding-left: 4px;
+  padding-right: 4px;
   left: calc(50% - 200px);
   align-items: center;
   justify-content: center;
   border-radius: 5px;
-  background: #32323c;
+  background: #50505a;
   border: 1px solid rgba(255, 255, 255, 0.1);
 }

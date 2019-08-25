@@ -4,6 +4,7 @@ const common = require('../common')
 const Datastore = require('nedb')
 const Jimp = require('jimp')
 const toBuffer = require('blob-to-buffer')
+const fs = require('fs')
 
 let db = new Datastore({filename:__dirname + '../../../../userdata/cores/internal', autoload: true})
 
@@ -163,7 +164,7 @@ class internal
                             data.file_height = image.bitmap.height
                             data.file_width = image.bitmap.width
 
-                            image.scaleToFit(250, 250, Jimp.RESIZE_BEZIER)
+                            image.scaleToFit(300, 300, Jimp.RESIZE_BEZIER)
                             image.write(data.sample_url)
                             data.sample_height = image.bitmap.height
                             data.sample_width = image.bitmap.width
@@ -196,6 +197,15 @@ class internal
         db.findOne({origin_id: id}, (err, doc) => {
             if (doc != null)
             {
+                try
+                {
+                    fs.unlinkSync(doc.file_url)
+                    fs.unlinkSync(doc.sample_url)
+                }
+                catch(e)
+                {
+                    console.log(e)
+                }
                 db.remove({origin_id: id})
             }
 
