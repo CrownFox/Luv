@@ -3,6 +3,8 @@ var ipc = require('electron').ipcRenderer
 const BrowserWindow = require('electron').remote.BrowserWindow
 var ThisWindow = require('electron').remote.getCurrentWindow()
 
+console.log(__dirname)
+
 function parse_tags(self, tags)
 {
     if (tags != null)

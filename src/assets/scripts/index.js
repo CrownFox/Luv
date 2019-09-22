@@ -12,11 +12,12 @@ var original_width = 800
 var original_height = 600
 var Mousetrap = require('mousetrap')
 var notifications = 0
-var c = require(__dirname + '/assets/scripts/common.js')
+var c = require('./assets/scripts/common.js')
 import copy from 'copy-to-clipboard'
-
 var loading = false
+var filehost = require('./assets/scripts/filehost')
 
+console.log(__dirname)
 
 $(document).ready(() =>
 {

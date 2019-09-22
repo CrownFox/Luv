@@ -17,12 +17,13 @@ function createWindow () {
     transparent: true,
     frame: false,
     webPreferences: {
-      preload: path.join(__dirname, 'preload.js')
+      webSecurity: false,
+      allowRunningInsecureContent: true
     }
   })
 
   // and load the index.html of the app.
-  mainWindow.loadFile('src/index.html')
+  mainWindow.loadURL(`file:///${__dirname}/index.html`)
 
   mainWindow.webContents.openDevTools()
 

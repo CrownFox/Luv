@@ -87,12 +87,22 @@ class thumb
     {
         var $template = $(pug.compileFile(__dirname + '/../templates/thumbnail.pug')(this))
         var $image = $template.find('.sample')
-        var $load = $(`<img src='${this.sample_url}'/>`).on('load',() =>
-        {
-            $image.attr('src', this.sample_url)
-        })
 
-        $image.attr('src', this.sample_url)
+        if (this.sample_url[0] == 'C')
+        {
+            this.sample_url = `./userdata/images/${this.core_origin}/sample/${this.id}.jpg`
+            $image.attr('src', this.sample_url)
+        }
+        else
+        {
+            var $load = $(`<img src='${this.sample_url}'/>`).on('load',() =>
+            {
+                $image.attr('src', this.sample_url)
+            })
+        }
+
+
+        //$image.attr('src', this.sample_url)
 
         return $template
     }
@@ -144,20 +154,30 @@ class post
             var $image = $template.find('.image')
             var $loading = $template.find('.loading')
 
-            image.load(this.file_url, (img, e) =>
+            if (this.file_url[0] == 'C')
             {
-                //console.log(img.completedPercentage)
-                var progress = img.completedPercentage
-                $loading.css('width', `${progress}%`)
-                //console.log(img)
-                //console.log(e)
-            }, null, (img, e) =>
-            {
-                //console.log(img)
-                //console.log(e)
+                this.file_url = `./userdata/images/${this.core_origin}/full/${this.id}.jpg`
+                $image.attr('src', this.file_url)
                 $loading.remove()
-                $image.attr('src', img.src)
-            })
+            }
+            else
+            {
+
+                image.load(this.file_url, (img, e) =>
+                {
+                    //console.log(img.completedPercentage)
+                    var progress = img.completedPercentage
+                    $loading.css('width', `${progress}%`)
+                    //console.log(img)
+                    //console.log(e)
+                }, null, (img, e) =>
+                {
+                    //console.log(img)
+                    //console.log(e)
+                    $loading.remove()
+                    $image.attr('src', img.src)
+                })
+            }
 
             return $template
         }
