@@ -124,6 +124,9 @@ body #app #main {
   display: flex;
   flex-direction: column;
   overflow: hidden;
+  background-image: linear-gradient(rgba(50, 50, 60, 0.98), rgba(50, 50, 60, 0.98)), url("../images/UI/LuvButt.png"), linear-gradient(#32323c, #32323c);
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 body #app #main #control-bar {

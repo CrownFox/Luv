@@ -1,6 +1,6 @@
 {
   "name": "luv-imageboard-viewer",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "An imageboard viewer made with luv",
   "main": "src/main.js",
   "scripts": {

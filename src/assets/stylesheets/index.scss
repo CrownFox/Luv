@@ -202,6 +202,10 @@ body
             flex-direction: column;
             overflow: hidden;
 
+            background-image: linear-gradient(rgba(50, 50, 60, 0.98), rgba(50, 50, 60, 0.98)), url('../images/UI/LuvButt.png'), linear-gradient(rgba(50, 50, 60, 1), rgba(50, 50, 60, 1));
+            background-position: center;
+            background-repeat: no-repeat;
+            
             #control-bar
             {
                 height: 142px;
